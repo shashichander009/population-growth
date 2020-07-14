@@ -116,13 +116,13 @@ def main():
             print("....Data Downloaded....")
             print("Which Chart do you want to see?")
             print("1: India population over years - Bar Plot")
-            print("2: Bar Chart of population of ASEAN countries in 2014")
+            print("2: Bar Chart of the population of ASEAN countries in 2014")
             print("3: Total population of SAARC countries over the years")
             print("4: Grouped Bar Chart - ASEAN population vs. years")
             print("5: Quit")
         choice = int(input("Choose an option: "))
         try:
-            if choice == 0:
+            if choice == 0 and data_file_status == "No":
                 download_data()
                 data_file_status = 'Yes'
             elif choice == 1 and data_file_status == "Yes":
