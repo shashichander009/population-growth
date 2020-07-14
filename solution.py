@@ -14,7 +14,6 @@ def download_data():
     response = requests.get(UN_DATA_URL)
     with open("data.csv", 'wb') as fs:
         fs.write(response.content)
-    return "Success"
 
 # PROBLEM NO 1
 # This function prepares a Bar Plot of 'population of India' vs. years.
