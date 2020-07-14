@@ -3,8 +3,6 @@ import csv
 from os import path
 from matplotlib import pyplot as plt
 
-plt.rcParams.update({'font.size': 6})
-
 UN_DATA_URL = 'https://datahub.io/core/population-growth-estimates-and-projections/r/population-estimates.csv'
 
 # This function downloads UN population data from given URL
@@ -31,6 +29,7 @@ def india_data_process():
     # Changing India Data dictionary into two sepreate lists of years and population
     lists = india_data .items()
     x, y = zip(*lists)
+    plt.rcParams.update({'font.size': 6})
     plt.bar(x, y, width=0.8, color="blue")
     plt.title("India's Population Over the Years", fontsize=20, color='Red')
     plt.xlabel('Year (1950-2015)', fontsize=14, color='Red')
@@ -94,6 +93,7 @@ def saarc_data_process():
 
     lists = saarc_data .items()
     x, y = zip(*lists)
+    plt.rcParams.update({'font.size': 6})
     plt.bar(x, y, align="center", width=0.8, color="blue")
     plt.title("SAARC Population Over the Years", fontsize=20, color='blue')
     plt.xlabel('Year (1950-2015)', fontsize=14, color='Red')
