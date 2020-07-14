@@ -83,7 +83,7 @@ def saarc_data_process():
         for line in csv_reader:
             region, _, year, population = line
             if region in saarc_countries:
-                population_in_crores = round(float(population)/10000, 2)
+                population_in_crores = float(population)/10000
                 if saarc_data.get(year[2:]) is None:
                     saarc_data[year[2:]] = population_in_crores
                 else:
@@ -95,7 +95,7 @@ def saarc_data_process():
     lists = saarc_data .items()
     x, y = zip(*lists)
     plt.bar(x, y, align="center", width=0.8, color="blue")
-    plt.title("SAARC Population Over the Years", fontsize=20, color='Red')
+    plt.title("SAARC Population Over the Years", fontsize=20, color='blue')
     plt.xlabel('Year (1950-2015)', fontsize=14, color='Red')
     plt.ylabel('Population (Cr)', fontsize=14, color='Green')
     plt.show()
