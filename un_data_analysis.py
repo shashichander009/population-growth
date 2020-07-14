@@ -62,11 +62,11 @@ def india_data_process():
 
     lists = india_data.items()
     x, y = zip(*lists)
-    plt.rcParams.update({'font.size': 6})
+    plt.rcParams.update({'font.size': 8})
     plt.grid(axis='y')
-    plt.bar(x, y, width=0.8, color='lime')
+    plt.bar(x, y, width=0.8, color='lime', zorder=2)
     plt.title("India's Population Over the Years",
-              fontsize=20, color='Red', zorder=2)
+              fontsize=20, color='Red')
     plt.xlabel('Year (1950-2015)', fontsize=14, color='Red')
     plt.ylabel('Population (Cr)', fontsize=14, color='indigo')
     plt.show()
@@ -223,7 +223,7 @@ def asean_group_data_process():
         red_patches,
         lime_patches,
     ])
-
+    plt.rcParams.update({'font.size': 10})
     plt.grid(axis='y')
     plt.show()
 
@@ -244,7 +244,7 @@ def main():
             print('1: India population over years - Bar Plot')
             print('2: Bar Chart of the population of ASEAN countries in 2014')
             print('3: Total population of SAARC countries over the years')
-            print('4: Grouped Bar Chart - ASEAN population vs. years')
+            print('4: ASEAN countries population vs years - Grouped Bar Chart')
             print('5: Quit')
         choice = int(input('Choose an option: '))
         try:
