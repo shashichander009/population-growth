@@ -39,7 +39,7 @@ def india_data_process():
 
 # PROBLEM NO 2
 # This function prepares the Bar Chart of population of ASEAN countries in 2014
-# ASEAN is a collection of South East Asian countries. Plot a Bar Chat of the population of these countries. Only use data for the year 2014
+# ASEAN is a collection of South East Asian countries.
 
 
 def asean_data_process():
