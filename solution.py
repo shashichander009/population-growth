@@ -1,18 +1,17 @@
 import requests
 import csv
-import os.path
 from os import path
 from matplotlib import pyplot as plt
 
-plt.rcParams.update({'font.size': 7})
+plt.rcParams.update({'font.size': 6})
 
-un_data_url = 'https://datahub.io/core/population-growth-estimates-and-projections/r/population-estimates.csv'
+UN_DATA_URL = 'https://datahub.io/core/population-growth-estimates-and-projections/r/population-estimates.csv'
 
 # This function downloads UN population data from given URL
 
 
 def download_data():
-    response = requests.get(un_data_url)
+    response = requests.get(UN_DATA_URL)
     with open("data.csv", 'wb') as fs:
         fs.write(response.content)
     return "Success"
@@ -22,18 +21,18 @@ def download_data():
 
 
 def india_data_process():
-    india_data = {}
+    india_data = {}  # This dictionary will store India's data with year as Key and Population as Values. We will keep only last two digits of year and population in crores
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
-            Region, Country_Code, Year, Population = line
-            if Region == 'India':
-                population_in_crores = round(float(Population)/10000, 2)
-                india_data[Year[2:]] = population_in_crores
-
+            region, _, year, population = line
+            if region == 'India':
+                population_in_crores = round(float(population)/10000, 2)
+                india_data[year[2:]] = population_in_crores
+    # Changing India Data dictionary into two sepreate lists of years and population
     lists = india_data .items()
     x, y = zip(*lists)
-    plt.bar(x, y, align="center", width=0.8, color="blue")
+    plt.bar(x, y, width=0.8, color="blue")
     plt.title("India's Population Over the Years", fontsize=20, color='Red')
     plt.xlabel('Year (1950-2015)', fontsize=14, color='Red')
     plt.ylabel('Population (Cr)', fontsize=14, color='Green')
@@ -52,10 +51,10 @@ def asean_data_process():
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
-            Region, Country_Code, Year, Population = line
-            if Region in asean_countries and Year == '2014':
-                population_in_crores = round(float(Population)/10000, 2)
-                asean_data[Region] = population_in_crores
+            region, _, year, population = line
+            if region in asean_countries and year == '2014':
+                population_in_crores = round(float(population)/10000, 2)
+                asean_data[region] = population_in_crores
 
     asean_data['Brunei'] = asean_data.pop('Brunei Darussalam')
     asean_data["Laos"] = asean_data.pop("Lao People's Democratic Republic")
@@ -83,13 +82,13 @@ def saarc_data_process():
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
-            Region, Country_Code, Year, Population = line
-            if Region in saarc_countries:
-                population_in_crores = round(float(Population)/10000, 2)
-                if saarc_data.get(Year[2:]) is None:
-                    saarc_data[Year[2:]] = population_in_crores
+            region, _, year, population = line
+            if region in saarc_countries:
+                population_in_crores = round(float(population)/10000, 2)
+                if saarc_data.get(year[2:]) is None:
+                    saarc_data[year[2:]] = population_in_crores
                 else:
-                    saarc_data[Year[2:]] += population_in_crores
+                    saarc_data[year[2:]] += population_in_crores
 
     for x, y in saarc_data.items():
         saarc_data[x] = round(float(y), 2)
