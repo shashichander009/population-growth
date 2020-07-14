@@ -26,7 +26,7 @@ SAARC_COUNTRIES = [
     'Bangladesh',
     'Bhutan',
     'India',
-    'the Maldives',
+    'Maldives',
     'Nepal',
     'Pakistan',
     'Sri Lanka',
@@ -48,7 +48,7 @@ def india_data_process():
     india_data = {}
     # This dictionary will store India's data with year as Key
     # and Population as Values. We will keep only last two digits of year and
-    # store population # in crores
+    # store population in crores
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
