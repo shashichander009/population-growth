@@ -15,6 +15,8 @@ This project is built in Python 3.7.4 and uses standard Python libraries. Apart 
 
 clone this repo
 
+create a virtual environment and activate it 
+
 move to this folder dataproblem-population 
 
 install all dependencies
