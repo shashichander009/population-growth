@@ -4,7 +4,9 @@ from os import path
 from matplotlib import pyplot as plt
 from matplotlib import patches as mpatches
 
-UN_DATA_URL = 'https://datahub.io/core/population-growth-estimates-and-projections/r/population-estimates.csv'
+UN_DATA_URL = 'https://datahub.io/core/population-\
+growth-estimates-and-projections/r/population-estimates.csv'
+
 
 ASEAN_COUNTRIES = [
     'Brunei Darussalam',
@@ -43,7 +45,10 @@ def download_data():
 # This function prepares a Bar Plot of India's population vs. years.
 
 def india_data_process():
-    india_data = {}  # This dictionary will store India's data with year as Key and Population as Values. We will keep only last two digits of year and store population in crores
+    india_data = {}
+    # This dictionary will store India's data with year as Key
+    # and Population as Values. We will keep only last two digits of year and
+    # store population # in crores
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
@@ -52,7 +57,8 @@ def india_data_process():
                 population_in_crores = round(float(population) / 10000, 2)
                 india_data[year[2:]] = population_in_crores
 
-    # Changing India Data dictionary into two sepreate lists of years and population
+    # Changing India Data dictionary into two different
+    # lists of years and population
 
     lists = india_data.items()
     x, y = zip(*lists)
@@ -97,8 +103,10 @@ def asean_data_process():
 
 
 # PROBLEM NO 3
-# This function calculates the TOTAL population of SAARC countries over the past years,
-# In this case for each year we have to calculate the sum of the population of all SAARC countries. Then plot a BAR CHART of Total SAARC population vs. year.
+# TOTAL population of SAARC countries over the past years
+# In this case for each year we have to calculate total
+# population of all SAARC countries.
+# Then plot a BAR CHART of Total SAARC population vs. year.
 
 def saarc_data_process():
     saarc_data = {}
@@ -130,7 +138,8 @@ def saarc_data_process():
 
 # PROBLEM NO 4
 # Grouped Bar Chart - ASEAN population vs. years
-# We will plot population of ASEAN countries as groups over the years 2011 - 2015.
+# We will plot population of ASEAN countries as
+# groups over the years 2011 - 2015.
 
 def asean_group_data_process():
     asean_grp_data = {}
@@ -138,7 +147,8 @@ def asean_group_data_process():
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
             (region, _, year, population) = line
-            if region in ASEAN_COUNTRIES and int(year) >= 2011 and int(year) <= 2015:
+            if region in ASEAN_COUNTRIES and int(year) >= 2011 and \
+                    int(year) <= 2015:
                 population_in_crores = round(float(population) / 10000, 2)
                 asean_grp_data[str(region) + '-' + str(year)
                                ] = population_in_crores
@@ -146,8 +156,9 @@ def asean_group_data_process():
     lists = sorted(asean_grp_data.items())
     _, y = zip(*lists)
 
-    # We will create a list of lists from the asean_grp_data using the following funciton
-    # It will be a 10 * 5 matrix with each row representing population of one country
+    # We will create a list of lists from the asean_grp_data
+    # It will be a 10 * 5 matrix with each row
+    # representing population of one country
     # Columns will represent each year
 
     i = 0
@@ -156,7 +167,8 @@ def asean_group_data_process():
         pop_list_of_list.append(y[i:i + 5])
         i += 5
 
-    # This is equivalent to np.arange function. We will use this to plot x axis
+    # This is equivalent to np.arange function.
+    # We will use this to plot x axis
     x = [0, 1.0, 2.0, 3.0, 4.0]
 
     bar_width = 0.08
