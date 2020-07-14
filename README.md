@@ -15,7 +15,7 @@ This project is built in Python 3.7.4 and uses standard Python libraries. Apart 
 
 clone this repo
 
-create a virtual environment and activate it 
+create a virtual environment and activate it (if you need help,please refer to this [link]( https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/))
 
 move to this folder dataproblem-population 
 
