@@ -47,7 +47,7 @@ def india_data_process():
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
-            (region, _, year, population) = line
+            region, _, year, population = line
             if region == 'India':
                 population_in_crores = round(float(population) / 10000, 2)
                 india_data[year[2:]] = population_in_crores
@@ -75,7 +75,7 @@ def asean_data_process():
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
-            (region, _, year, population) = line
+            region, _, year, population = line
             if region in ASEAN_COUNTRIES and year == '2014':
                 population_in_crores = round(float(population) / 10000, 2)
                 asean_data[region] = population_in_crores
@@ -105,7 +105,7 @@ def saarc_data_process():
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
-            (region, _, year, population) = line
+            region, _, year, population = line
             if region in SAARC_COUNTRIES:
                 population_in_crores = float(population) / 10000
                 if saarc_data.get(year[2:]) is None:
@@ -113,7 +113,7 @@ def saarc_data_process():
                 else:
                     saarc_data[year[2:]] += population_in_crores
 
-    for (x, y) in saarc_data.items():
+    for x, y in saarc_data.items():
         saarc_data[x] = round(float(y), 2)
 
     lists = saarc_data.items()
@@ -217,7 +217,7 @@ def asean_group_data_process():
 
 
 def main():
-    if path.exists('data.csv') != True:
+    if path.exists('data.csv') is not True:
         data_file_status = 'No'
     else:
         data_file_status = 'Yes'
