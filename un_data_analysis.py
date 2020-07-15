@@ -247,7 +247,7 @@ def main():
             print('0: Download Data')
             print('5: Quit')
         else:
-            print('....Data Downloaded....')
+            print('\n....Data Downloaded....')
             print('Which Chart do you want to see?')
             print('1: India population over years - Bar Plot')
             print('2: Bar Chart of the population of ASEAN countries in 2014')
@@ -270,10 +270,10 @@ def main():
             elif choice == 5:
                 break
             else:
-                print('Invalid input!')
+                print('\nInvalid input!')
         except ValueError:
 
-            print('Input not an Integer')
+            print('\nInput not an Integer')
 
 
 if __name__ == '__main__':
