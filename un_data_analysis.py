@@ -86,6 +86,8 @@ def asean_data_process():
                 population_in_crores = round(float(population) / 10000, 2)
                 asean_data[region] = population_in_crores
 
+    # Here we update few country names to make it more readable in graph
+
     asean_data['Brunei'] = asean_data.pop('Brunei Darussalam')
     asean_data['Laos'] = asean_data.pop("Lao People's Democratic Republic")
     asean_data['Vietnam'] = asean_data.pop('Viet Nam')
@@ -143,6 +145,9 @@ def saarc_data_process():
 
 def asean_group_data_process():
     asean_grp_data = {}
+    # In this dictionary we will store data of asean countries population
+    # The key will be concat of Year + Country to make it unique
+    # The value will be population
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
@@ -198,7 +203,7 @@ def asean_group_data_process():
     plt.xlabel('Years', fontsize=14, color='Red')
     plt.ylabel('Population (Cr)', fontsize=14, color='Green')
 
-    # This adds lables to the graph
+    # Here we are adding lables to the graph
     gray_patches = mpatches.Patch(color='gray', label='Brunei')
     darkred_patches = mpatches.Patch(color='darkred', label='Cambodia')
     gold_patches = mpatches.Patch(color='gold', label='Indonesia')
@@ -226,6 +231,9 @@ def asean_group_data_process():
     plt.rcParams.update({'font.size': 10})
     plt.grid(axis='y')
     plt.show()
+
+# This is our main function which will allow users
+# to Download Data as well as view those charts
 
 
 def main():
