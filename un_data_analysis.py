@@ -41,7 +41,7 @@ def download_data():
         fs.write(response.content)
 
 
-# These are global dictionaries that will hold region, year population
+# These are global dictionaries that will hold region, year and population
 
 region = []
 year = []
@@ -53,12 +53,10 @@ population = []
 def read_data():
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
-        i = 0
         for line in csv_reader:
             region.append(line[0])
             year.append(line[2])
             population.append(line[3])
-            i += 1
 
 
 # PROBLEM NO 1
