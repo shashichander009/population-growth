@@ -41,13 +41,13 @@ def download_data():
         fs.write(response.content)
 
 
-# These are global dictionaries that will hold region, year and population
+# These are global lists that will hold region, year and population
 
 region = []
 year = []
 population = []
 
-# This function iniatilizes these global dictionaries
+# This function iniatilizes these global lists
 
 
 def read_data():
@@ -279,6 +279,11 @@ def main():
             print('4: ASEAN countries population vs years - Grouped Bar Chart')
             print('5: Quit')
         try:
+
+            region.clear()
+            population.clear()
+            year.clear()
+
             choice = int(input('Choose an option: '))
             if choice == 0 and data_file_status == 'No':
                 download_data()
