@@ -41,6 +41,26 @@ def download_data():
         fs.write(response.content)
 
 
+# These are global dictionaries that will hold region, year population
+
+region = []
+year = []
+population = []
+
+# This function iniatilizes these global dictionaries
+
+
+def read_data():
+    with open('data.csv', 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        i = 0
+        for line in csv_reader:
+            region.append(line[0])
+            year.append(line[2])
+            population.append(line[3])
+            i += 1
+
+
 # PROBLEM NO 1
 # This function prepares a Bar Plot of India's population vs. years.
 
@@ -49,19 +69,21 @@ def india_data_process():
     # This dictionary will store India's data with year as Key
     # and Population as Values. We will keep only last two digits of year and
     # store population in crores
-    with open('data.csv', 'r') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        for line in csv_reader:
-            region, _, year, population = line
-            if region == 'India':
-                population_in_crores = round(float(population) / 10000, 2)
-                india_data[year[2:]] = population_in_crores
+    read_data()
+    for i in range(len(region)):
+        if region[i] == 'India':
+            population_in_crores = round(float(population[i]) / 10000, 2)
+            this_year = year[i]
+            india_data[this_year[2:]] = population_in_crores
 
     # Changing India Data dictionary into two different
     # lists of years and population
 
     lists = india_data.items()
     x, y = zip(*lists)
+
+    # Now we plot the chart with x,y which has years and population
+
     plt.rcParams.update({'font.size': 8})
     plt.grid(axis='y')
     plt.bar(x, y, width=0.8, color='lime', zorder=2)
@@ -78,13 +100,13 @@ def india_data_process():
 
 def asean_data_process():
     asean_data = {}
-    with open('data.csv', 'r') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        for line in csv_reader:
-            region, _, year, population = line
-            if region in ASEAN_COUNTRIES and year == '2014':
-                population_in_crores = round(float(population) / 10000, 2)
-                asean_data[region] = population_in_crores
+
+    read_data()
+
+    for i in range(len(region)):
+        if region[i] in ASEAN_COUNTRIES and year[i] == '2014':
+            population_in_crores = round(float(population[i]) / 10000, 2)
+            asean_data[region[i]] = population_in_crores
 
     # Here we update few country names to make it more readable in graph
 
@@ -112,22 +134,26 @@ def asean_data_process():
 
 def saarc_data_process():
     saarc_data = {}
-    with open('data.csv', 'r') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        for line in csv_reader:
-            region, _, year, population = line
-            if region in SAARC_COUNTRIES:
-                population_in_crores = float(population) / 10000
-                if saarc_data.get(year[2:]) is None:
-                    saarc_data[year[2:]] = population_in_crores
-                else:
-                    saarc_data[year[2:]] += population_in_crores
+
+    read_data()
+
+    for i in range(len(region)):
+        if region[i] in SAARC_COUNTRIES:
+            population_in_crores = float(population[i]) / 10000
+            current_year = year[i]
+            if saarc_data.get(current_year[2:]) is None:
+                saarc_data[current_year[2:]] = population_in_crores
+            else:
+                saarc_data[current_year[2:]] += population_in_crores
 
     for x, y in saarc_data.items():
         saarc_data[x] = round(float(y), 2)
 
     lists = saarc_data.items()
     x, y = zip(*lists)
+
+    # Ploting the bar chart
+
     plt.rcParams.update({'font.size': 6})
     plt.bar(x, y, width=0.8, color='grey', zorder=2)
     plt.title('SAARC Population Over the Years', fontsize=17,
@@ -148,15 +174,15 @@ def asean_group_data_process():
     # In this dictionary we will store data of asean countries population
     # The key will be concat of Year + Country to
     # The value will be population
-    with open('data.csv', 'r') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        for line in csv_reader:
-            (region, _, year, population) = line
-            if region in ASEAN_COUNTRIES and int(year) >= 2011 and \
-                    int(year) <= 2015:
-                population_in_crores = round(float(population) / 10000, 2)
-                asean_grp_data[str(region) + '-' + str(year)
-                               ] = population_in_crores
+
+    read_data()
+
+    for i in range(len(region)):
+        if region[i] in ASEAN_COUNTRIES and int(year[i]) >= 2011 and \
+                int(year[i]) <= 2015:
+            population_in_crores = round(float(population[i]) / 10000, 2)
+            asean_grp_data[str(region[i]) + '-' + str(year[i])
+                           ] = population_in_crores
 
     lists = sorted(asean_grp_data.items())
     _, y = zip(*lists)
