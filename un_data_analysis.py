@@ -146,7 +146,7 @@ def saarc_data_process():
 def asean_group_data_process():
     asean_grp_data = {}
     # In this dictionary we will store data of asean countries population
-    # The key will be concat of Year + Country to make it unique
+    # The key will be concat of Year + Country to
     # The value will be population
     with open('data.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
@@ -254,8 +254,8 @@ def main():
             print('3: Total population of SAARC countries over the years')
             print('4: ASEAN countries population vs years - Grouped Bar Chart')
             print('5: Quit')
-        choice = int(input('Choose an option: '))
         try:
+            choice = int(input('Choose an option: '))
             if choice == 0 and data_file_status == 'No':
                 download_data()
                 data_file_status = 'Yes'
