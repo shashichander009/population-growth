@@ -170,7 +170,7 @@ def saarc_data_process():
 def asean_group_data_process():
     asean_grp_data = {}
     # In this dictionary we will store data of asean countries population
-    # The key will be concat of Year + Country to
+    # The key will be concat of Year + Country
     # The value will be population
 
     read_data()
@@ -280,6 +280,7 @@ def main():
             print('5: Quit')
         try:
 
+            # Here we reset all global lists
             region.clear()
             population.clear()
             year.clear()
